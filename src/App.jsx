@@ -22,8 +22,8 @@ function App() {
 					{message[0] != null ? <AlertMessage message={message[0]} category={message[1]} flashMessage={flashMessage} /> : null }
 					<Routes>
 						<Route path='/' element={<Home/>}/>
-						<Route path='/register' element={<Register flashMessage={flashMessage}/>}/>
-						<Route path='/login' element={<Login/>}/>
+						<Route path='/register' element={<Register flashMessage={flashMessage} />}/>
+						<Route path='/login' element={<Login flashMessage={flashMessage} />}/>
 					</Routes>
 				</div>
 			</Router>
