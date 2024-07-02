@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
-function Register(){
-	const [redirect, setRedirect] = useState(null);
-	const [errorMessage, setErrorMessage] = useState('')
+function Register(props){
+	let navigate = useNavigate();
 
 	const handleSubmit = (e) =>{
 		e.preventDefault();
@@ -14,40 +13,39 @@ function Register(){
 		let password = e.target.password.value;
 		let confirmPass = e.target.confirmPass.value;
 		if (password !== confirmPass){
-			console.log('The passwords are not the same');
-			setErrorMessage('Passwords do not match')
-			return;
-		}
+			props.flashMessage(['The passwords are not the same', 'danger'])
+			navigate('/register')
+		} else {
 
-		// Set up request to create new user endpoint
-		let myHeaders = new Headers();
-		myHeaders.append('Content-Type', 'application/json');
+			// Set up request to create new user endpoint
+			let myHeaders = new Headers();
+			myHeaders.append('Content-Type', 'application/json');
 
-		let data = JSON.stringify({
-			username: e.target.username.value,
-			email: e.target.email.value,
-			password: password,
-			confirm_password: confirmPass
-		});
+			let data = JSON.stringify({
+				username: e.target.username.value,
+				email: e.target.email.value,
+				password: password,
+				confirm_password: confirmPass
+			});
 
-		fetch('http://127.0.0.1:5000/api/users', {
-			method: 'POST',
-			headers: myHeaders,
-			body: data
-		}).then(res => res.json())
-			.then(data => {
-				console.log(data)
-				setRedirect("/")
-			})
+			fetch('http://127.0.0.1:5000/api/users', {
+				method: 'POST',
+				headers: myHeaders,
+				body: data
+			}).then(res => res.json())
+				.then(data => {
+					console.log(data)
+					props.flashMessage(['Thank you for registering.', 'success'])
+					navigate('/')
+				})
+			}
 
 	}
 
 
-	return(
-		redirect ? <Navigate to={redirect} /> : 
+	return( 
 		<>
 			<h3 className="text-center">Register Here</h3>
-			{errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
 			<form className="justify-content-center d-flex" onSubmit={handleSubmit}>
 				<div className="form-group col-4">
 						<fieldset>
