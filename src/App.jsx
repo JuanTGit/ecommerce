@@ -5,25 +5,38 @@ import Login from './views/Login'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import AlertMessage from './components/AlertMessage'
 import { useState } from 'react'
+import Profile from './views/Profile'
 
 function App() {
 
 	const [message, setMessage] = useState([null, null])
+	const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token'))
 
 	const flashMessage = ([message, category='primary']) => {
 		setMessage([message, category])
 	}
 
+	const logIn = (token) => {
+		setLoggedIn(token)
+	} 
+
+	const logOut = () => {
+		flashMessage(['You have been logged out'])
+		localStorage.removeItem('token')
+		setLoggedIn(null)
+	}
+
 	return (
 		<>
 			<Router>
-				<Navbar />
+				<Navbar loggedIn={loggedIn} logUserOut={logOut} flashMessage={flashMessage} />
 				<div className='container'>
 					{message[0] != null ? <AlertMessage message={message[0]} category={message[1]} flashMessage={flashMessage} /> : null }
 					<Routes>
 						<Route path='/' element={<Home/>}/>
 						<Route path='/register' element={<Register flashMessage={flashMessage} />}/>
-						<Route path='/login' element={<Login flashMessage={flashMessage} />}/>
+						<Route path='/login' element={<Login flashMessage={flashMessage} logUserIn={logIn} />}/>
+						<Route path='/profile' element={<Profile flashMessage={flashMessage} />}/>
 					</Routes>
 				</div>
 			</Router>
