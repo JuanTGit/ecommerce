@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import AlertMessage from './components/AlertMessage'
 import { useState } from 'react'
 import Profile from './views/Profile'
+import Product from './views/Products'
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
 						<Route path='/register' element={<Register flashMessage={flashMessage} />}/>
 						<Route path='/login' element={<Login flashMessage={flashMessage} logUserIn={logIn} />}/>
 						<Route path='/profile' element={<Profile flashMessage={flashMessage} />}/>
+						<Route path='/products' element={<Product />} />
 					</Routes>
 				</div>
 			</Router>
