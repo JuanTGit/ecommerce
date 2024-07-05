@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import ProductCard from "../components/ProductCard";
 
 function Product(props){
 	const [products, setProducts] = useState([])
@@ -14,11 +15,9 @@ function Product(props){
 		<>	
 			<h3 className="text-center">Products</h3>
 			<div className="d-flex justify-content-center">
-				<ul>
-					{products.map(product => (
-						<li key={product.id}>{product.prod_name}</li>
-					))}
-				</ul>
+				<div className="row">
+					{products.map(product => <ProductCard prod={product} key={product.id} /> )}
+				</div>
 			</div>
 
 		</>
