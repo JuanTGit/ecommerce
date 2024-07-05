@@ -7,6 +7,7 @@ import AlertMessage from './components/AlertMessage'
 import { useState } from 'react'
 import Profile from './views/Profile'
 import Product from './views/Products'
+import ProductUpdate from './components/ProductUpdate'
 
 function App() {
 
@@ -35,10 +36,11 @@ function App() {
 					{message[0] != null ? <AlertMessage message={message[0]} category={message[1]} flashMessage={flashMessage} /> : null }
 					<Routes>
 						<Route path='/' element={<Home/>}/>
-						<Route path='/register' element={<Register flashMessage={flashMessage} />}/>
-						<Route path='/login' element={<Login flashMessage={flashMessage} logUserIn={logIn} />}/>
-						<Route path='/profile' element={<Profile flashMessage={flashMessage} />}/>
-						<Route path='/products' element={<Product />} />
+						<Route path='register' element={<Register flashMessage={flashMessage} />}/>
+						<Route path='login' element={<Login flashMessage={flashMessage} logUserIn={logIn} />}/>
+						<Route path='profile' element={<Profile flashMessage={flashMessage} />}/>
+						<Route path='products' element={<Product />} />
+						<Route path='products/:prodId' element={<ProductUpdate />} />
 					</Routes>
 				</div>
 			</Router>
