@@ -1,15 +1,38 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function ProductUpdate(props){
 	const { prodId } = useParams();
 	const [prod, setProd] = useState({});
+	const navigate = useNavigate();
 	useEffect(() => {
 		fetch(`http://127.0.0.1:5000/api/products/${prodId}`)
 			.then(res => res.json())
 			.then(data => setProd(data))
 	}, [])
 
+	const handleDelete = () => {
+		let myHeaders = new Headers();
+		myHeaders.append('Authorization', `Bearer ${props.token}`)
+
+		fetch(`http://127.0.0.1:5000/api/products/${prodId}`, {
+			method: "DELETE",
+			headers: myHeaders
+		})
+			.then(res => res.json())
+			.then(data => {
+				if (data.error){
+					props.flashMessage([data.error, 'danger'])
+				}else{
+					props.flashMessage([data.message, 'warning'])
+					navigate('/products')
+				}
+			})
+			.catch(err => {
+				props.flashMessage(['Failed to delete product', 'danger']);
+			});
+		};
+	
 	return(
 		<div>
 			<h3 className="text-center">Product</h3>
@@ -18,6 +41,7 @@ function ProductUpdate(props){
 					<div className="card-body">
 						<h5 className="card-title">{prod.name}</h5>
 						<p className="card-text">{prod.price}</p>
+						<button className="btn btn-danger" onClick={handleDelete}>Delete</button>
 					</div>
 				</div>
 		</div>

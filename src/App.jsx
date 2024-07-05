@@ -40,7 +40,7 @@ function App() {
 						<Route path='login' element={<Login flashMessage={flashMessage} logUserIn={logIn} />}/>
 						<Route path='profile' element={<Profile flashMessage={flashMessage} />}/>
 						<Route path='products' element={<Product />} />
-						<Route path='products/:prodId' element={<ProductUpdate />} />
+						<Route path='products/:prodId' element={<ProductUpdate token={loggedIn} flashMessage={flashMessage}/>} />
 					</Routes>
 				</div>
 			</Router>
