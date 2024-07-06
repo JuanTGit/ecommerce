@@ -20,8 +20,10 @@ function Login(props){
 		})
 
 		let data = await res.json();
+		let user = await data.userId
 		let token = await data.token
 		localStorage.setItem('token', token)
+		localStorage.setItem('userId', user)
 		props.flashMessage([`You have successfully logged in ${username}!`, 'success'])
 		props.logUserIn(token)
 		setRedirect('/')
