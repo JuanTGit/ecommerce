@@ -35,7 +35,7 @@ function Profile(props){
 				body: userData
 			})
 				.then(res => res.json())
-				.then(data => console.log(data))
+				.then(data => data.flashMessage(['Password successfully updated', 'success']))
 				.catch(error => console.error('Error updating user', error))
 
 		}

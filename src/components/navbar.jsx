@@ -16,7 +16,7 @@ function Navbar(props) {
                             {props.loggedIn ? (
                                 <>
                                     <Link className="nav-link" to="/" onClick={props.logUserOut}>Logout</Link>
-                                    <Link className="nav-link" to="/profile">Profile</Link>
+                                    <Link className="nav-link" to="/profile">{props.username}</Link>
                                 </>
                                 ) : (
                                 <>
