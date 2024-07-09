@@ -26,7 +26,9 @@ function Profile(props){
 			myHeaders.append('Authorization', `Bearer ${props.token}`)
 
 			let userData = JSON.stringify({
+				currPass: currPass,
 				password: password
+
 			});
 	
 			fetch(`http://localhost:5000/api/users/${userId}`, {
@@ -35,7 +37,13 @@ function Profile(props){
 				body: userData
 			})
 				.then(res => res.json())
-				.then(data => data.flashMessage(['Password successfully updated', 'success']))
+				.then(data => {
+					if (data.error) {
+						props.flashMessage([data.error, 'danger'])
+					} else {
+						props.flashMessage([data.message, 'success'])
+					}
+				})
 				.catch(error => console.error('Error updating user', error))
 
 		}

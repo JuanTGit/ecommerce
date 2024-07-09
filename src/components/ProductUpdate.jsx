@@ -23,7 +23,7 @@ function ProductUpdate(props){
 			.then(data => {
 				if (data.error){
 					props.flashMessage([data.error, 'danger'])
-				}else{
+				} else {
 					props.flashMessage([data.message, 'warning'])
 					navigate('/products')
 				}
