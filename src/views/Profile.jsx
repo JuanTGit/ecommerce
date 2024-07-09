@@ -53,7 +53,9 @@ function Profile(props){
 
 	return(
 		<>
-			<h3 className="text-center">{user.username} Profile</h3>
+			<h1 className="text-center mt-5">Edit Profile</h1>
+
+			<h5 className="text-center mt-4">{user.username}</h5>
 			<form className="justify-content-center d-flex" onSubmit={updateProfile}>
 				<div className="form-group col-4">
 						<fieldset>
@@ -68,7 +70,7 @@ function Profile(props){
 							<label htmlFor="confirmPass">Confirm Password</label>
 							<input type="password" name="confirmPass" className="form-control" placeholder="Confirm Password" />
 						</fieldset>
-						<input type="submit" className="btn btn-primary w-100 mt-3" value='Update'/>
+						<input type="submit" className="btn btn-primary w-100 mt-3" value='Update Password'/>
 				</div>
 			</form>
 		</>

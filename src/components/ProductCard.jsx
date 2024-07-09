@@ -4,7 +4,7 @@ function ProductCard(props) {
 	const { prod } = props;
 	
 	return (
-			<div className='col-6 col-sm-4'>
+			<div className='col-12 col-sm-3'>
 				<div className="card">
 					<img src={prod.image} className="card-img-top" alt="..."/>
 					<div className="card-body">

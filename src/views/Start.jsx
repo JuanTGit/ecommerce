@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { BsChevronDoubleDown } from "react-icons/bs";
 
 function Start(){
-	const [prod, setProd] = useState({})
+	const [prod, setProd] = useState([])
 	const scrollRef = useRef(null);
 
 	const scrollToSection = () => {
@@ -17,7 +17,8 @@ function Start(){
 	useEffect(() => {
 		fetch(`http://localhost:5000/api/products`)
 			.then(res => res.json())
-			.then(data => setProd(data))
+			.then(data => {
+				setProd(data.slice(0, 4))})
 	},[])
 
 	return(
@@ -35,7 +36,11 @@ function Start(){
 					</div>
 				</div>
 			</div>
-			<h3></h3>
+			<h3 className="text-center fs-1 mt-5" ref={scrollRef}>Featured</h3>
+			<div className="row">
+				{prod.map(product => <ProductCard prod={product}/>)}
+			</div>
+			
 		</>
 	)
 }
