@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
 function Navbar(props) {
+
+    const toCapitalize = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+    }
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -13,17 +17,60 @@ function Navbar(props) {
                         <div className="navbar-nav">
                             
                             <Link className="nav-link" to="/products">Products</Link>
-                            {props.loggedIn ? (
-                                <>
-                                    <Link className="nav-link" to="/" onClick={props.logUserOut}>Logout</Link>
-                                    <Link className="nav-link" to="/profile">{props.username}</Link>
-                                </>
-                                ) : (
-                                <>
-                                    <Link className="nav-link" to="/register">Register</Link>
-                                    <Link className="nav-link" to="/login">Login</Link>
-                                </>
-                            )}
+                            {props.loggedIn ? ( 
+                                props.admin ? ( 
+                                    <>
+                                        <li className="nav-item dropdown">
+                                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                {toCapitalize(props.username)}
+                                            </a>
+                                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li>
+                                                    <Link className="dropdown-item" to="/profile">{toCapitalize(props.username)}</Link>
+                                                </li>
+                                                <li><hr className="dropdown-divider" /></li>
+                                                <li>
+                                                    <Link className="dropdown-item" to="/profile">Dashboard</Link>
+                                                </li>
+                                                <li><hr className="dropdown-divider" /></li>
+                                                <li>
+                                                    <Link className="dropdown-item" to="/" onClick={props.logUserOut}>Manage Users</Link>
+                                                </li>
+                                                <li><hr className="dropdown-divider" /></li>
+                                                <li>
+                                                    <Link className="dropdown-item" to="/" onClick={props.logUserOut}>Manage Products</Link>
+                                                </li>
+                                                <li><hr className="dropdown-divider" /></li>
+                                                <li>
+                                                    <Link className="dropdown-item" to="/" onClick={props.logUserOut}>Logout</Link>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    
+                                    </> 
+                                    ) : (
+                                    <>
+                                        <li className="nav-item dropdown">
+                                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                {toCapitalize(props.username)}
+                                            </a>
+                                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li>
+                                                    <Link className="dropdown-item" to="/profile">{toCapitalize(props.username)}</Link>
+                                                </li>
+                                                <li><hr className="dropdown-divider" /></li>
+                                                <li>
+                                                    <Link className="dropdown-item" to="/" onClick={props.logUserOut}>Logout</Link>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </>
+                                    )) : (
+                                    <>
+                                        <Link className="nav-link" to="/register">Register</Link>
+                                        <Link className="nav-link" to="/login">Login</Link>
+                                    </>
+                                )}
                         </div>
                     </div>
                 </div>
