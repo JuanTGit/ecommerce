@@ -37,7 +37,7 @@ function ManageUsers(props){
 			if (data.error) {
 				props.flashMessage([data.error, 'danger'])
 			} else {
-				navigate('/manage-usersced')
+				navigate('/manage-users')
 				props.flashMessage([data.message, 'success'])
 			}
 		})
