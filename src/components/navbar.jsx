@@ -34,11 +34,11 @@ function Navbar(props) {
                                                 </li>
                                                 <li><hr className="dropdown-divider" /></li>
                                                 <li>
-                                                    <Link className="dropdown-item" to="/" onClick={props.logUserOut}>Manage Users</Link>
+                                                    <Link className="dropdown-item" to="/manage-users">Manage Users</Link>
                                                 </li>
                                                 <li><hr className="dropdown-divider" /></li>
                                                 <li>
-                                                    <Link className="dropdown-item" to="/" onClick={props.logUserOut}>Manage Products</Link>
+                                                    <Link className="dropdown-item" to="/new-product">Manage Products</Link>
                                                 </li>
                                                 <li><hr className="dropdown-divider" /></li>
                                                 <li>

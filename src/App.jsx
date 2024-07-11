@@ -2,7 +2,7 @@ import Navbar from './components/Navbar'
 import Home from './views/Home'
 import Register from './views/Register'
 import Login from './views/Login'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import AlertMessage from './components/AlertMessage'
 import { useEffect, useState } from 'react'
 import Profile from './views/Profile'
@@ -10,15 +10,18 @@ import Product from './views/Products'
 import ProductUpdate from './components/ProductUpdate'
 import Start from './views/Start'
 import PrivateRoute from './components/PrivateRoute'
+import NewProduct from './views/ManageProducts'
+import ManageUsers from './views/ManageUsers'
 
 function App() {
 
 	const [message, setMessage] = useState([null, null])
 
+
 	const [user, setUser] = useState({
 		loggedIn: localStorage.getItem('token'),
 		username: localStorage.getItem('username'),
-		admin: localStorage.getItem('admin')
+		admin: localStorage.getItem('admin') === 'true'
 	})
 
 	const flashMessage = ([message, category='primary']) => {
@@ -32,7 +35,7 @@ function App() {
 	const logOut = () => {
 		flashMessage(['You have been logged out'])
 		localStorage.clear();
-		setUser({ loggedIn: null, username: null, admin: null })
+		setUser({ loggedIn: null, username: null, admin: false })
 	}
  
 	return (
@@ -48,6 +51,8 @@ function App() {
 						<Route path='profile' element={<PrivateRoute element={Profile} token={user.loggedIn} flashMessage={flashMessage} />} />
 						<Route path='products' element={<Product />} />
 						<Route path='products/:prodId' element={<ProductUpdate token={user.loggedIn} flashMessage={flashMessage}/>} />
+                        <Route path='new-product' element={<NewProduct admin={user.admin} flashMessage={flashMessage}/>} />
+                        <Route path='manage-users' element={<ManageUsers token={user.loggedIn} admin={user.admin} flashMessage={flashMessage}/>} />
 					</Routes>
 			</Router>
 		</>

@@ -19,21 +19,25 @@ function Login(props){
 			headers: myHeaders
 		})
 
-		let data = await res.json();
-		let { user, name, token, admin } = {
-			user: await data.userId,
-			name: await data.username,
-			token: await data.token,
-			admin: await data.is_admin
-		}
+		if (res.ok){
+			let data = await res.json();
+			let { user, name, token, admin } = {
+				user: await data.userId,
+				name: await data.username,
+				token: await data.token,
+				admin: await data.is_admin
+			}
 
-		localStorage.setItem('token', token)
-		localStorage.setItem('userId', user)
-		localStorage.setItem('username', name)
-		localStorage.setItem('admin', admin)
-		props.flashMessage([`You have successfully logged in ${username}!`, 'success'])
-		props.logUserIn(token, name, admin)
-		setRedirect('/')
+			localStorage.setItem('token', token)
+			localStorage.setItem('userId', user)
+			localStorage.setItem('username', name)
+			localStorage.setItem('admin', admin)
+			props.flashMessage([`You have successfully logged in ${username}!`, 'success'])
+			props.logUserIn(token, name, admin)
+			setRedirect('/')
+		} else {
+			props.flashMessage(['Invalid username or password', 'danger'])
+		}
 	}
 	return(
 		<>
