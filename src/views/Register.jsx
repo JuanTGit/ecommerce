@@ -7,8 +7,7 @@ function Register(props){
 
 	const handleSubmit = (e) =>{
 		e.preventDefault();
-		// console.log(e)
-
+		
 		// Confirm the passwords are equal
 		let password = e.target.password.value;
 		let confirmPass = e.target.confirmPass.value;

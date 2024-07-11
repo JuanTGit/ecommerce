@@ -51,7 +51,7 @@ function App() {
 						<Route path='profile' element={<PrivateRoute element={Profile} token={user.loggedIn} flashMessage={flashMessage} />} />
 						<Route path='products' element={<Product />} />
 						<Route path='products/:prodId' element={<ProductUpdate token={user.loggedIn} flashMessage={flashMessage}/>} />
-                        <Route path='new-product' element={<NewProduct admin={user.admin} flashMessage={flashMessage}/>} />
+                        <Route path='new-product' element={<NewProduct token={user.loggedIn} admin={user.admin} flashMessage={flashMessage}/>} />
                         <Route path='manage-users' element={<ManageUsers token={user.loggedIn} admin={user.admin} flashMessage={flashMessage}/>} />
 					</Routes>
 			</Router>

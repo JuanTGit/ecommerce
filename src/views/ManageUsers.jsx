@@ -50,8 +50,8 @@ function ManageUsers(props){
 			if (data.error) {
 				props.flashMessage([data.error, 'danger'])
 			} else {
-				setUserList(prevList => prevList.filter(u => u.id !== user));
-				setFilteredUsers(prevList => prevList.filter(u => u.id !== user));
+				// setUserList(prevList => prevList.filter(u => u.id !== user));
+				// setFilteredUsers(prevList => prevList.filter(u => u.id !== user));
 				props.flashMessage([data.message, 'success'])
 			}
 		})
@@ -64,17 +64,17 @@ function ManageUsers(props){
 
 	return(
 		<div className="container">
-			<h1 className="text-center">Manage Users</h1>
+			<h1 className="text-center mt-5">Manage Users</h1>
 			<div className="row justify-content-center mt-4">
 				<div className="col-md-8">
 				<input
 					type="text"
-					className="form-control mb-4"
+					className="form-control my-4"
 					placeholder="Search for users..."
 					value={searchTerm}
 					onChange={(e) => setSearchTerm(e.target.value)}
 				/>
-					<div className="list-group">
+					<div className="list-group mb-5">
 						{filteredUsers.map(user => (
 							<div key={user.id} className="list-group-item d-flex justify-content-between align-items-center">
 								Username: {user.username} || Email: {user.email}

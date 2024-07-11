@@ -4,11 +4,14 @@ import ProductCard from "../components/ProductCard";
 function Product(props){
 	const [boardGames, setBoardGames] = useState([]);
 	const [cardGames, setCardGames] = useState([]);
+	const [ allGames, setAllGames] = useState([]);
 
 	useEffect(() => {
 		fetch('http://127.0.0.1:5000/api/products')
 			.then(res => res.json())
 			.then(data => {
+				setAllGames(data);
+
 				const filterCardGames = data.filter(product => product.category_id === 1);
 				setCardGames(filterCardGames);
 
