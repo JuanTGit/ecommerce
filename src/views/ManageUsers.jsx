@@ -6,12 +6,17 @@ function ManageUsers(props){
 	let navigate = useNavigate();
 
 	const [userList, setUserList] = useState([])
+	const [searchTerm, setSearchTerm] = useState('');
+	const [filteredUsers, setFilteredUsers] = useState([]);
 
 	useEffect(() => {
 		fetch(`http://localhost:5000/api/users`)
 			.then(res => res.json())
-			.then(data => setUserList(data))
-	}, [])
+			.then(data => {
+				setUserList(data); 
+				setFilteredUsers(data)
+			});
+	}, []);
 
 	useEffect(() => {
 		if (!props.admin) {
@@ -19,6 +24,14 @@ function ManageUsers(props){
 			navigate('/');
 		}
 	}, [props.admin, navigate, props.flashMessage]);
+
+	useEffect(() => {
+		const results = userList.filter(user =>
+			user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+			user.email.toLowerCase().includes(searchTerm.toLowerCase())
+		);
+		setFilteredUsers(results);
+	}, [searchTerm, userList]);
 
 	const handleDeleteUser = (e) => {
 		e.preventDefault();
@@ -33,11 +46,12 @@ function ManageUsers(props){
 			headers: myHeaders
 		})
 		.then(res => res.json())
-		.then(data => {
+		.then((data) => {
 			if (data.error) {
 				props.flashMessage([data.error, 'danger'])
 			} else {
-				navigate('/manage-users')
+				setUserList(prevList => prevList.filter(u => u.id !== user));
+				setFilteredUsers(prevList => prevList.filter(u => u.id !== user));
 				props.flashMessage([data.message, 'success'])
 			}
 		})
@@ -53,11 +67,18 @@ function ManageUsers(props){
 			<h1 className="text-center">Manage Users</h1>
 			<div className="row justify-content-center mt-4">
 				<div className="col-md-8">
+				<input
+					type="text"
+					className="form-control mb-4"
+					placeholder="Search for users..."
+					value={searchTerm}
+					onChange={(e) => setSearchTerm(e.target.value)}
+				/>
 					<div className="list-group">
-						{userList.map(user => (
+						{filteredUsers.map(user => (
 							<div key={user.id} className="list-group-item d-flex justify-content-between align-items-center">
 								Username: {user.username} || Email: {user.email}
-								<button className="btn btn-danger w-25" onClick={handleDeleteUser} id={user.id}>Delete</button>
+								<button className="btn btn-danger w-25" onClick={handleDeleteUser} id={user.id}>Delete User</button>
 							</div>
 						))}
 
