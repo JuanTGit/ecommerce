@@ -3,7 +3,7 @@ import ProductCard from "../components/ProductCard";
 import { useEffect, useRef, useState } from "react";
 import { BsChevronDoubleDown } from "react-icons/bs";
 
-function Start(){
+function Start(props){
 	const [prod, setProd] = useState([])
 	const scrollRef = useRef(null);
 
@@ -38,7 +38,7 @@ function Start(){
 			</div>
 			<h3 className="text-center fs-1 mt-5" ref={scrollRef}>Featured</h3>
 			<div className="row">
-				{prod.map(product => <ProductCard prod={product}/>)}
+				{prod.map(product => <ProductCard prod={product} key={product.id} flashMessage={props.flashMessage}/>)}
 			</div>
 			
 		</>

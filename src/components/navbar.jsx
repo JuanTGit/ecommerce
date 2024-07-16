@@ -46,6 +46,7 @@ function Navbar(props) {
                                                 </li>
                                             </ul>
                                         </li>
+                    
                                     
                                     </> 
                                     ) : (
@@ -64,13 +65,16 @@ function Navbar(props) {
                                                 </li>
                                             </ul>
                                         </li>
+                    
                                     </>
                                     )) : (
                                     <>
                                         <Link className="nav-link" to="/register">Register</Link>
                                         <Link className="nav-link" to="/login">Login</Link>
                                     </>
+                                    
                                 )}
+                                <Link className="nav-link" to="/view-cart">Cart</Link>
                         </div>
                     </div>
                 </div>

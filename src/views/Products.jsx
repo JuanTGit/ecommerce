@@ -29,13 +29,13 @@ function Product(props){
 			<h3 className="text-center m-5">Card Games</h3>
 			<div className="d-flex justify-content-center">
 				<div className="row">
-					{cardGames.map(product => <ProductCard prod={product} key={product.id} /> )}
+					{cardGames.map(product => <ProductCard prod={product} key={product.id} flashMessage={props.flashMessage}/> )}
 				</div>
 			</div>
 			<h3 className="text-center m-5">Board Games</h3>
 			<div className="d-flex justify-content-center">
 				<div className="row">
-					{boardGames.map(product => <ProductCard prod={product} key={product.id} /> )}
+					{boardGames.map(product => <ProductCard prod={product} key={product.id} flashMessage={props.flashMessage}/> )}
 				</div>
 			</div>
 

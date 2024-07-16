@@ -12,6 +12,7 @@ import Start from './views/Start'
 import PrivateRoute from './components/PrivateRoute'
 import NewProduct from './views/ManageProducts'
 import ManageUsers from './views/ManageUsers'
+import Cart from './views/Cart'
 
 function App() {
 
@@ -44,15 +45,16 @@ function App() {
 				<Navbar loggedIn={user.loggedIn} logUserOut={logOut} flashMessage={flashMessage} username={user.username} admin={user.admin}/>
 					{message[0] != null ? <AlertMessage message={message[0]} category={message[1]} flashMessage={flashMessage} /> : null }
 					<Routes>
-						<Route path='/' element={<Start/>} />
+						<Route path='/' element={<Start flashMessage={flashMessage}/>} />
 						<Route path='home' element={<Home/>}/>
 						<Route path='register' element={<Register flashMessage={flashMessage} />}/>
 						<Route path='login' element={<Login flashMessage={flashMessage} logUserIn={logIn} />}/>
 						<Route path='profile' element={<PrivateRoute element={Profile} token={user.loggedIn} flashMessage={flashMessage} />} />
-						<Route path='products' element={<Product />} />
+						<Route path='products' element={<Product flashMessage={flashMessage}/>} />
 						<Route path='products/:prodId' element={<ProductUpdate token={user.loggedIn} flashMessage={flashMessage}/>} />
                         <Route path='new-product' element={<NewProduct token={user.loggedIn} admin={user.admin} flashMessage={flashMessage}/>} />
                         <Route path='manage-users' element={<ManageUsers token={user.loggedIn} admin={user.admin} flashMessage={flashMessage}/>} />
+                        <Route path='view-cart' element={<Cart token={user.loggedIn} flashMessage={flashMessage}/>} />
 					</Routes>
 			</Router>
 		</>
