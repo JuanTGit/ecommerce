@@ -1,4 +1,4 @@
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar.jsx'
 import Home from './views/Home'
 import Register from './views/Register'
 import Login from './views/Login'
