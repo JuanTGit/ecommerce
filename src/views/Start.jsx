@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import ProductCard from "../components/ProductCard";
 import { useEffect, useRef, useState } from "react";
 import { BsChevronDoubleDown } from "react-icons/bs";
+import gateImage from '../assets/images/gate.jpg'
 
 function Start(props){
 	const [prod, setProd] = useState([])
@@ -24,7 +25,7 @@ function Start(props){
 	return(
 		<>
 			<div className="d-flex justify-content-center overflow-hidden" id="container-xl">
-				<img src="/src/assets/images/gate.jpg" className="img-lg" alt="..."/>
+				<img src={gateImage} className="img-lg" alt="gate"/>
 				<div className="text-on-image text-center text-white">
 					<h1 className="display-4 fs-2 mt-5 text-nowrap">Make game night</h1>
 					<h1 className="display-4 fs-2">EASY</h1>
