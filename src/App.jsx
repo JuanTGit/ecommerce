@@ -1,4 +1,4 @@
-// import Navbar from './components/Navbar'
+import Navbar from './components/Navbar'
 import Home from './views/Home'
 import Register from './views/Register'
 import Login from './views/Login'
@@ -42,7 +42,7 @@ function App() {
 	return (
 		<>
 			<Router>
-				{/* <Navbar loggedIn={user.loggedIn} logUserOut={logOut} flashMessage={flashMessage} username={user.username} admin={user.admin}/> */}
+				<Navbar loggedIn={user.loggedIn} logUserOut={logOut} flashMessage={flashMessage} username={user.username} admin={user.admin}/>
 					{message[0] != null ? <AlertMessage message={message[0]} category={message[1]} flashMessage={flashMessage} /> : null }
 					<Routes>
 						<Route path='/' element={<Start flashMessage={flashMessage}/>} />
