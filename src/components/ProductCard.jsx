@@ -28,12 +28,12 @@ function ProductCard(props) {
 			.then(res => res.json())
 			.then(data => {
 				if (data.error) {
-					flashMessage('Error adding item to cart!', 'danger');
+					flashMessage(['Error adding item to cart!', 'danger']);
 				} else {
-					flashMessage(data.message, 'success');
+					flashMessage([data.message, 'success']);
 				}
 			})
-			.catch(err => { flashMessage('Something went wrong!', 'danger') })
+			.catch(err => { flashMessage(['Something went wrong!', 'danger']) })
 		} else {
 			flashMessage(['Please login to add items to your cart', 'warning'])
 			navigate('/login')
