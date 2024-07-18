@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 function ProductUpdate(props){
+	const apiUrl = import.meta.env.VITE_API_URL;
 	const { prodId } = useParams();
 	const [prod, setProd] = useState({});
 	const navigate = useNavigate();
 	useEffect(() => {
-		fetch(`http://127.0.0.1:5000/api/products/${prodId}`)
+		fetch(`${apiUrl}/api/products/${prodId}`)
 			.then(res => res.json())
 			.then(data => setProd(data))
 	}, [])
@@ -15,7 +16,7 @@ function ProductUpdate(props){
 		let myHeaders = new Headers();
 		myHeaders.append('Authorization', `Bearer ${props.token}`)
 
-		fetch(`http://127.0.0.1:5000/api/products/${prodId}`, {
+		fetch(`${apiUrl}/api/products/${prodId}`, {
 			method: "DELETE",
 			headers: myHeaders
 		})

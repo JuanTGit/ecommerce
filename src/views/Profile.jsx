@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 
 function Profile(props){
+	const apiUrl = import.meta.env.VITE_API_URL;
 	const userId = localStorage.getItem('userId')
 	const [user, setUser] = useState({})
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/api/users/${userId}`)
+		fetch(`${apiUrl}/api/users/${userId}`)
 			.then(res => res.json())
 			.then(data => setUser(data))
 	}, []);
@@ -31,7 +32,7 @@ function Profile(props){
 
 			});
 	
-			fetch(`http://localhost:5000/api/users/${userId}`, {
+			fetch(`${apiUrl}/api/users/${userId}`, {
 				method: 'PUT',
 				headers: myHeaders,
 				body: userData

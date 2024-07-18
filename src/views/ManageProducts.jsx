@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 
 function NewProduct(props) {
+	const apiUrl = import.meta.env.VITE_API_URL;
 	let navigate = useNavigate();
 
 	useEffect(() => {
@@ -25,7 +26,7 @@ function NewProduct(props) {
 			"category_id": parseInt(e.target.category.value, 10)
 		});
 
-		fetch(`http://127.0.0.1:5000/api/products`, {
+		fetch(`${apiUrl}/api/products`, {
 			method: "POST",
 			headers: myHeaders,
 			body: prodDetails

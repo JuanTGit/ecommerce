@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function Register(props){
+	const apiUrl = import.meta.env.VITE_API_URL;
 	let navigate = useNavigate();
 
 	const handleSubmit = (e) =>{
@@ -27,7 +28,7 @@ function Register(props){
 				confirm_password: confirmPass
 			});
 
-			fetch('http://127.0.0.1:5000/api/users', {
+			fetch(`${apiUrl}/api/users`, {
 				method: 'POST',
 				headers: myHeaders,
 				body: data

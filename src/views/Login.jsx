@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function Login(props){
+	const apiUrl = import.meta.env.VITE_API_URL;
 	const [redirect, setRedirect] = useState(null)
 	let navigate = useNavigate();
 
@@ -14,7 +15,7 @@ function Login(props){
 		let myHeaders = new Headers();
 		myHeaders.append('Authorization', "Basic " + btoa(`${username}:${password}`));
 
-		let res = await fetch('http://127.0.0.1:5000/api/token', {
+		let res = await fetch(`${apiUrl}/api/token`, {
 			method: 'POST',
 			headers: myHeaders
 		})

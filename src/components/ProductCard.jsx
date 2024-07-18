@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function ProductCard(props) {
+	const apiUrl = import.meta.env.VITE_API_URL;
 	const { prod, flashMessage } = props;
 	const navigate = useNavigate();
 	
@@ -20,7 +21,7 @@ function ProductCard(props) {
 				'quantity': 1
 			})
 	
-			fetch(`http://127.0.0.1:5000/api/add-to-cart`, {
+			fetch(`${apiUrl}/api/add-to-cart`, {
 				method: "POST",
 				headers: myHeaders,
 				body: cartItem

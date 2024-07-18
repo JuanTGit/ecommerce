@@ -5,6 +5,7 @@ import { BsChevronDoubleDown } from "react-icons/bs";
 import gateImage from '../assets/images/gate.jpg'
 
 function Start(props){
+	const apiUrl = import.meta.env.VITE_API_URL;
 	const [prod, setProd] = useState([])
 	const scrollRef = useRef(null);
 
@@ -16,7 +17,7 @@ function Start(props){
 
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/api/products`)
+		fetch(`${apiUrl}/api/products`)
 			.then(res => res.json())
 			.then(data => {
 				setProd(data.slice(0, 4))})

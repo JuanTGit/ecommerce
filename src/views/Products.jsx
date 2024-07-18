@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import ProductCard from "../components/ProductCard";
 
 function Product(props){
+	const apiUrl = import.meta.env.VITE_API_URL;
 	const [boardGames, setBoardGames] = useState([]);
 	const [cardGames, setCardGames] = useState([]);
 	const [ allGames, setAllGames] = useState([]);
 
 	useEffect(() => {
-		fetch('http://127.0.0.1:5000/api/products')
+		fetch(`${apiUrl}/api/products`)
 			.then(res => res.json())
 			.then(data => {
 				setAllGames(data);

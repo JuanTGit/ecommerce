@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function ManageUsers(props){
-
+	const apiUrl = import.meta.env.VITE_API_URL;
 	let navigate = useNavigate();
 
 	const [userList, setUserList] = useState([])
@@ -10,7 +10,7 @@ function ManageUsers(props){
 	const [filteredUsers, setFilteredUsers] = useState([]);
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/api/users`)
+		fetch(`${apiUrl}/api/users`)
 			.then(res => res.json())
 			.then(data => {
 				setUserList(data); 
@@ -41,7 +41,7 @@ function ManageUsers(props){
 		myHeaders.append("Content-Type", "application/json");
 		myHeaders.append("Authorization", `Bearer ${props.token}`)
 
-		fetch(`http://127.0.0.1:5000/api/users/${user}`, {
+		fetch(`${apiUrl}/api/users/${user}`, {
 			method: 'DELETE',
 			headers: myHeaders
 		})
@@ -50,8 +50,6 @@ function ManageUsers(props){
 			if (data.error) {
 				props.flashMessage([data.error, 'danger'])
 			} else {
-				// setUserList(prevList => prevList.filter(u => u.id !== user));
-				// setFilteredUsers(prevList => prevList.filter(u => u.id !== user));
 				props.flashMessage([data.message, 'success'])
 			}
 		})

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 function Cart(props){
+	const apiUrl = import.meta.env.VITE_API_URL;
 	const navigate = useNavigate();
 	const [items, setItems] = useState([])
 	const [cartTotal, setCartTotal] = useState(0);
@@ -21,7 +22,7 @@ function Cart(props){
 			const myHeaders = new Headers();
 			myHeaders.append("Authorization", `Bearer ${props.token}`);
 			
-			const response = await fetch(`http://localhost:5000/api/view-cart`, {
+			const response = await fetch(`${apiUrl}/api/view-cart`, {
 				method: "GET",
 				headers: myHeaders
 			})
