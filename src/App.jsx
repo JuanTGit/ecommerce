@@ -1,5 +1,4 @@
 import Navbar from './components/Navbar'
-import Home from './views/Home'
 import Register from './views/Register'
 import Login from './views/Login'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
@@ -46,7 +45,6 @@ function App() {
 					{message[0] != null ? <AlertMessage message={message[0]} category={message[1]} flashMessage={flashMessage} /> : null }
 					<Routes>
 						<Route path='/' element={<Start flashMessage={flashMessage}/>} />
-						<Route path='home' element={<Home/>}/>
 						<Route path='register' element={<Register flashMessage={flashMessage} />}/>
 						<Route path='login' element={<Login flashMessage={flashMessage} logUserIn={logIn} />}/>
 						<Route path='profile' element={<PrivateRoute element={Profile} token={user.loggedIn} flashMessage={flashMessage} />} />
