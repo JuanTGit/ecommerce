@@ -37,7 +37,7 @@ function ProductUpdate(props){
 	return(
 		<div>
 			<h3 className="text-center">Product</h3>
-			<div className="card w-50">
+			<div className="card">
 					<img src={prod.image} className="card-img-top" alt="..."/>
 					<div className="card-body">
 						<h5 className="card-title">{prod.name}</h5>

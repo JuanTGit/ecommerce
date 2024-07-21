@@ -38,11 +38,12 @@ function Start(props){
 					</div>
 				</div>
 			</div>
-			<h3 className="text-center fs-1 mt-5" ref={scrollRef}>Featured</h3>
-			<div className="row">
-				{prod.map(product => <ProductCard prod={product} key={product.id} flashMessage={props.flashMessage}/>)}
+			<div className="container">
+				<h3 className="text-center fs-1 my-5" ref={scrollRef}>Featured</h3>
+				<div className="row">
+					{prod.map(product => <ProductCard prod={product} key={product.id} flashMessage={props.flashMessage}/>)}
+				</div>
 			</div>
-			
 		</>
 	)
 }

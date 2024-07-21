@@ -25,22 +25,18 @@ function Product(props){
 
 
 	return(
-		<>	
+		<div className="container">	
 			<h3 className="text-center">Products</h3>
 			<h3 className="text-center m-5">Card Games</h3>
-			<div className="d-flex justify-content-center">
-				<div className="row">
+				<div className="row d-flex justify-content-center">
 					{cardGames.map(product => <ProductCard prod={product} key={product.id} flashMessage={props.flashMessage}/> )}
 				</div>
-			</div>
 			<h3 className="text-center m-5">Board Games</h3>
-			<div className="d-flex justify-content-center">
-				<div className="row">
+				<div className="row d-flex justify-content-center">
 					{boardGames.map(product => <ProductCard prod={product} key={product.id} flashMessage={props.flashMessage}/> )}
 				</div>
-			</div>
 
-		</>
+		</div>
 	)
 }
 
