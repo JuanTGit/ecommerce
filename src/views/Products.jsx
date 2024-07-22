@@ -26,7 +26,7 @@ function Product(props){
 
 	return(
 		<div className="container">	
-			<h3 className="text-center">Products</h3>
+			<h3 className="text-center mt-5">Products</h3>
 			<h3 className="text-center m-5">Card Games</h3>
 				<div className="row d-flex justify-content-center">
 					{cardGames.map(product => <ProductCard prod={product} key={product.id} flashMessage={props.flashMessage}/> )}

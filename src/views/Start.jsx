@@ -32,7 +32,7 @@ function Start(props){
 					<h1 className="display-4 fs-2">EASY</h1>
 				</div>
 				<div className="btn-on-image text-center">
-					<Link to="/home" className="btn btn-danger btn-md mt-4 w-100"><strong>View our Products</strong></Link>
+					<Link to="/products" className="btn btn-danger btn-md mt-4 w-100"><strong>View our Products</strong></Link>
 					<div id="list-example" className="list-group mt-4">
 						<BsChevronDoubleDown className="scroll-btn btn bg-light btn-outline-circle" onClick={scrollToSection}/>
 					</div>
